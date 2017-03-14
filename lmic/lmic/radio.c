@@ -158,26 +158,20 @@ void OnRxError( void )
 // (initialized by radio_init( ), used by radio_rand1( ))
 static u1_t randbuf[16];
 
-#ifdef EE02
-//#define EE02_EXT_ANT 1
-#define EE02_INT_ANT 1
-const uint32_t ext_ant_pin = SX1276_ANT_HF_CTRL;
-const uint32_t int_ant_pin = SX1276_ANT_LF_CTRL;
-#endif
 
 // get random seed from wideband noise rssi
 void radio_init( void )
 {
     hal_disableIRQs( );
 
-    // Set antenna
-    #ifdef EE02_EXT_ANT
-    GpioWrite(&ext_ant_pin, 1);
-    GpioWrite(&int_ant_pin, 1);
-    #endif
-    #ifdef EE02_CHIP_ANT
-    GpioWrite(&ext_ant_pin, 0);
-    GpioWrite(&int_ant_pin, 0);
+    // Set antenna if the EE02 module is used
+    #ifdef EE02
+        Gpio_t hf_ant_ctl = SX1276_ANT_HF_CTRL;
+        #if EE02_EXT_ANT
+        GpioWrite(&hf_ant_ctl, 1);
+        #else
+        GpioWrite(&hf_ant_ctl, 0);
+        #endif
     #endif
 
     // Initialize Radio driver
