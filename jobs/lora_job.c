@@ -22,7 +22,6 @@
 #include "data_cache.h"
 #include "battery.h"
 
-static const u1_t DEVICE_EUI[8]  = LORAWAN_DEVICE_EUI;
 #if !LORAWAN_OTAA
 static u1_t NWSKEY[16] =  LORAWAN_NWKSKEY;
 static u1_t APPSKEY[16] = LORAWAN_APPSKEY;
