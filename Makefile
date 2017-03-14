@@ -103,7 +103,6 @@ CFLAGS += -DNRF_LOG_USES_RTT=1
 # Set LMiC to use 868MHz
 CFLAGS += -DCFG_eu868
 CFLAGS += -DCFG_sx1276_radio
-
 # Because sloppy programming
 LMIC_CFLAGS := -Werror=unused-variable
 
@@ -144,54 +143,30 @@ clean:
 linker: compiles
 	$(NO_ECHO)$(CC) $(LDFLAGS) *.o -lm -o $(PROJECT_NAME).out
 
-compiles: main delay core util lmiclib sx1276driver firefly batt imu power\
-		 rtc gpiote spi uart saadc twi
+compiles: ee0x lmiclib nrf52
 
-main:
+ee0x:
 	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c main.c
-	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c cache/data_cache.c
-	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c jobs/lora_job.c
-	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c jobs/gps_job.c
-	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c jobs/battery_job.c
-	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c jobs/imu_job.c
-	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c jobs/power_job.c
-
-batt:
-	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c battery/battery.c
-
-firefly:
-	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c gps/firefly_x1.c
-	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c gps/gps_std.c
-	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c gps/nmealib.c
+	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c cache/*.c
+	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c jobs/*.c
+	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c battery/*.c
+	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c gps/*.c
+	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lsm9ds1/*.c
+	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) tps22994/*.c
 
 lmiclib:
-	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lmic/lmic/aes.c
-	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lmic/lmic/lmic.c
-	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lmic/lmic/oslmic.c
-	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lmic/lmic/radio.c
-	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lmic/nrf52/hal.c
-
-sx1276driver:
-	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lmic/sx1276/sx1276.c
-	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lmic/sx1276/sx1276-board.c
-
-imu:
-	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lsm9ds1/LSM9DS1.c
-
-power:
-	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) tps22994/tps22994.c
-
+	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lmic/lmic/*.c
+	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lmic/nrf52/*.c
+	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lmic/sx1276/*.c
 
 # =============================================================================
-# Modules
+# nRF52 Modules
 
-core:
+nrf52:
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/toolchain/system_nrf52.c
 	$(NO_ECHO)$(CC) -c $(ASMFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/toolchain/gcc/gcc_startup_nrf52.s
-
-util:
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/libraries/util/app_util_platform.c
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
@@ -204,30 +179,16 @@ util:
 		$(NRF52_SDK_ROOT)/external/segger_rtt/SEGGER_RTT.c
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c
-
-delay:
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/drivers_nrf/delay/nrf_delay.c
-
-timer:
-	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
-		$(NRF52_SDK_ROOT)/components/drivers_nrf/timer/nrf_drv_timer.c
-
-rtc:
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/drivers_nrf/rtc/nrf_drv_rtc.c
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/drivers_nrf/clock/nrf_drv_clock.c
-
-gpiote:
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/drivers_nrf/gpiote/nrf_drv_gpiote.c
-
-spi:
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/drivers_nrf/spi_master/nrf_drv_spi.c
-
-uart:
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/libraries/uart/app_uart_fifo.c
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
@@ -236,14 +197,10 @@ uart:
 		$(NRF52_SDK_ROOT)/components/drivers_nrf/uart/nrf_drv_uart.c
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/drivers_nrf/common/nrf_drv_common.c
-
-saadc:
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/drivers_nrf/saadc/nrf_drv_saadc.c
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/drivers_nrf/hal/nrf_saadc.c
-
-twi:
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) \
 		$(NRF52_SDK_ROOT)/components/drivers_nrf/twi_master/nrf_drv_twi.c
 
