@@ -16,6 +16,8 @@
 #ifndef LORA_CONFIG_H
 #define LORA_CONFIG_H
 
+#define LORAWAN_OTAA 1
+
 /* ==========================================================================
  * OTAA provisioning. This includes the device EUI, application EUI and 
  * application key. The application and network session keys will be 
