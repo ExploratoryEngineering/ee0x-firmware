@@ -216,6 +216,7 @@ static void gpio_config(void) {
     APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_NSS_PIN, &outconfig));
     APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_RXTX_PIN, &outconfig));
     APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_RST_PIN, &outconfig));
+    APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_ANT_HF_CTRL, &outconfig));
 
     nrf_drv_gpiote_in_config_t inconfig = GPIOTE_CONFIG_IN_SENSE_LOTOHI(true);
     inconfig.pull = NRF_GPIO_PIN_NOPULL;

@@ -33,10 +33,10 @@
     #define SX1276_DIO4_B_PIN 20
     #define SX1276_NSS_PIN 22
     #define SX1276_RST_PIN 3
-    #define SX1276_RXTX_PIN 2
+    #define SX1276_RXTX_PIN 21
 
     // External/chip antenna switch pin
-    #define SX1276_ANT_HF_CTRL 31
+    #define SX1276_ANT_HF_CTRL 27
 
     // GPS UART pins
     #define GPS_RX_PIN 29
