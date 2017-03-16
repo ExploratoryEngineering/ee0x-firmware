@@ -52,12 +52,16 @@ AES-128 encryption and decryption is done through software but the nRF52 chip ha
 The portions written by Telenor Digital uses an Apache License 2.0
 
 Parts of this firmware includes software from other parties:
-* LSM99S1 driver is adapted from source code written by SparkFun Electronics Ltd. They provide a really nice breakout
-  board for the LSM9DS1 chip; highly recommended. The original source is released under a Creative Commons Share-alike 3.0 license.
-  The original source can be found at https://github.com/sparkfun/SparkFun_LSM9DS1_Arduino_Library
-* LMiC library (aka "LoRa WAN in C" is written by IBM Research in Zurich with adaptations by Semtech. The Semtech portions of the
+* LSM99S1 driver is adapted from source code written by SparkFun Electronics
+  Ltd. They provide a really nice breakout board for the LSM9DS1 chip; highly
+  recommended. The original source is released under a Creative Commons
+  Share-alike 3.0 license. The original source can be found at https://github.com/sparkfun/SparkFun_LSM9DS1_Arduino_Library
+* LMiC library (aka "LoRa WAN in C" is written by IBM Research in Zurich with
+  adaptations by Semtech. The Semtech portions of the
   library is rewritten to pure C. The LMiC library can be found at https://www.research.ibm.com/labs/zurich/ics/lrsc/lmic.html
   and the Semtech-adapted version is available from the mBed site: https://developer.mbed.org/teams/Semtech/code/LMiC/
-* The radio driver in LMiC is adapted from the Semtech SX1276Lib driver available from https://developer.mbed.org/teams/Semtech/code/SX1276Lib/
-* Keen readers might recognize parts of the battery code from the nRF52 SDK. It is no coincidence.
+* The radio driver in LMiC is adapted from the Semtech SX1276Lib driver
+  available from https://developer.mbed.org/teams/Semtech/code/SX1276Lib/
+* Keen readers might recognize parts of the battery code from the nRF52 SDK.
+  It is no coincidence.
 

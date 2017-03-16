@@ -21,6 +21,7 @@
 #include "app_error.h"
 #include "data_cache.h"
 #include "battery.h"
+#include "lora_config.h"
 
 #if !LORAWAN_OTAA
 static u1_t NWSKEY[16] =  LORAWAN_NWKSKEY;
