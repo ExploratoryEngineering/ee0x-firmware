@@ -1,7 +1,3 @@
-#include <stdbool.h>
-
-#include <nrf_drv_twi.h>
-
 #include "app_error.h"
 
 /*
@@ -21,13 +17,7 @@
 */
 
 #include "oslmic.h"
-
-#include "nrf52_pins.h"
-#include "gps_job.h"
-#include "battery_job.h"
-#include "imu_job.h"
 #include "lora_job.h"
-#include "power_job.h"
 
 /**
  * @brief Function for application main entry.
@@ -37,19 +27,10 @@ int main(void)
     NRF_LOG_INIT();
     NRF_LOG_PRINTF("Start main loop. Device ID = %04x%04x\n", NRF_FICR->DEVICEID[0], NRF_FICR->DEVICEID[1]);
 
-    // Turn on various units through power-switch
-    powerup_init();
-
     /* really lmic_init */
     os_init();
 
     lora_job_init();
-
-    gps_job_init();
-
-    battery_job_init();
-
-    imu_job_init();
 
     os_runloop();
 
