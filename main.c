@@ -25,7 +25,10 @@
 int main(void)
 {
     NRF_LOG_INIT();
-    NRF_LOG_PRINTF("Start main loop. Device ID = %04x%04x\n", NRF_FICR->DEVICEID[0], NRF_FICR->DEVICEID[1]);
+    NRF_LOG("============================================\n");
+    NRF_LOG_PRINTF("EE0x Firmware. nRF52 serial %04x%04x\n",
+        NRF_FICR->DEVICEID[0], NRF_FICR->DEVICEID[1]);
+    NRF_LOG("============================================\n");
 
     /* really lmic_init */
     os_init();
@@ -34,6 +37,6 @@ int main(void)
 
     os_runloop();
 
-    NRF_LOG("You are not supposed to see this! os_runloop() shouldn't return!\n");
+    NRF_LOG("Oh dear. os_runloop() shouldn't return!\n");
 }
 

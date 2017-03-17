@@ -17,7 +17,9 @@
 #ifndef NRF52_PINS_H
 #define NRF52_PINS_H
 
+// Use this #define if you are using the nRF52 DK
 #define NRF52_DK
+// Use this #define if you are using EE-02 with a programming cable or EE-04
 //#define EE02
 
 #ifdef EE02
@@ -51,10 +53,10 @@
 #endif
 // Configuration for nRF52 DK with sheild and breakout boards.
 
-// The following pinout works if you are using the nRF52 DK with a Semtech Sx1276 shield 
+// The following pinout works if you are using the nRF52 DK with a Semtech Sx1276 shield
 // plus a GPS (G-Top Firely X1 or similar) connected to UART and a LSM9DS1 breakout from SparkFun.
 #ifdef NRF52_DK
-    // sx1276 pins
+  // sx1276 pins
     #define SX1276_DIO0_PIN 13
     #define SX1276_DIO1_PIN 14
     #define SX1276_DIO2_PIN 15
@@ -77,6 +79,7 @@
     #define IMU_SCK_PIN 16
     #define IMU_CS_M_PIN 19
     #define IMU_CS_AG_PIN 20
+
 #endif
 
 // Common pin assignments

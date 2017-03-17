@@ -19,19 +19,18 @@
 #define LORAWAN_OTAA 1
 
 /* ==========================================================================
- * OTAA provisioning. This includes the device EUI, application EUI and 
- * application key. The application and network session keys will be 
+ * OTAA provisioning. This includes the device EUI, application EUI and
+ * application key. The application and network session keys will be
  * negotiated when the device joins the network.
  * ========================================================================== */
 // Device provisioning - replace this with EUI/device address and NwkSKey + AppSKey as required.
 #define LORAWAN_DEVICE_EUI { 0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08 }
 #define LORAWAN_APP_KEY { 0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F,0x10 }
 #define LORAWAN_APP_EUI { 0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08 }
-
 /* ==========================================================================
- * ABP (activation by personalisation) parameters. Rather than negotiating 
- * the application and network session keys these are set directly. This 
- * eliminates the need for a join request and the device can transmit data 
+ * ABP (activation by personalisation) parameters. Rather than negotiating
+ * the application and network session keys these are set directly. This
+ * eliminates the need for a join request and the device can transmit data
  * directly. The downside is that the device should keep track of the frame
  * counters when it is powered down but you won't share the application key.
  * ========================================================================== */

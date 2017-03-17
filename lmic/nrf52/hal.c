@@ -169,7 +169,6 @@ static void rtc_config(void)
 
     //Power on RTC instance
     nrf_drv_rtc_enable(&rtc);
-    NRF_LOG("RTC is ready\n");
 }
 
 /* callbacks inside the driver */
@@ -216,8 +215,9 @@ static void gpio_config(void) {
     APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_NSS_PIN, &outconfig));
     APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_RXTX_PIN, &outconfig));
     APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_RST_PIN, &outconfig));
+    #ifdef EE02
     APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_ANT_HF_CTRL, &outconfig));
-
+    #endif
     nrf_drv_gpiote_in_config_t inconfig = GPIOTE_CONFIG_IN_SENSE_LOTOHI(true);
     inconfig.pull = NRF_GPIO_PIN_NOPULL;
 
@@ -263,7 +263,6 @@ void hal_init (void) {
     rtc_config();
     gpio_config();
     spi_config();
-    NRF_LOG_PRINTF("Started LMiC HW. Time = %d\n", hal_ticks());
 }
 
 /**
