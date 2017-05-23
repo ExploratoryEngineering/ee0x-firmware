@@ -26,15 +26,19 @@ static nrf_drv_twi_t* twi;
 void tps22994_init_i2c()
 {
     /* Make sure I2C is configured and enabled */
+
     APP_ERROR_CHECK(nrf_drv_twi_init(twi, NULL, NULL, NULL));
     nrf_drv_twi_enable(twi);
 }
 
-void tps22994_init(nrf_drv_twi_t* twidriver)
+void tps22994_init(uint8_t address, nrf_drv_twi_t* twidriver)
 {
     twi = twidriver;
 
     tps22994_init_i2c();
+
+    // Make sure the channels are controlled via I2C
+    tps22994_write_ctrl_reg(address, 0xF0);
 }
 
 uint8_t tps22994_read_byte(uint8_t address, uint8_t reg)

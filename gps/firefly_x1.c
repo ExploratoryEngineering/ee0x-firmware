@@ -31,7 +31,7 @@
 /**
  * Dump NMEA sentences read from the receiver to the debug log
  */
-#define DUMP_NMEA_INPUT 0
+#define DUMP_NMEA_INPUT 1
 
 #define UART_TX_BUF_SIZE 256
 #define UART_RX_BUF_SIZE 1

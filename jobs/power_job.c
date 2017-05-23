@@ -22,13 +22,10 @@
 static nrf_drv_twi_t twi = NRF_DRV_TWI_INSTANCE(0);
 
 void powerup_init(void) {
-    tps22994_init(&twi);
+    tps22994_init(TPS22994_I2C_ADDRESS, &twi);
 
-    // Turn off everything first
-    tps22994_write_ctrl_reg(TPS22994_I2C_ADDRESS, 0x00);
-
-    /* I2C controls channels instead of GPIO, turn on all channels */
-    tps22994_write_reg(TPS22994_I2C_ADDRESS, 1, 0xE);
-
-    tps22994_write_ctrl_reg(TPS22994_I2C_ADDRESS, 0xFF);
-}
+    tps22994_channel_on(TPS22994_I2C_ADDRESS, TPS22994_GPS_PIN);
+    tps22994_channel_on(TPS22994_I2C_ADDRESS, TPS22994_VBACKUP_PIN);
+    tps22994_channel_on(TPS22994_I2C_ADDRESS, TPS22994_BNO055_IO_PIN);
+    tps22994_channel_on(TPS22994_I2C_ADDRESS, TPS22994_BNO055_PIN);
+ }

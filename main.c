@@ -18,6 +18,10 @@
 
 #include "oslmic.h"
 #include "lora_job.h"
+#include "bno055.h"
+#include "nrf_delay.h"
+#include "power_job.h"
+#include "gps_job.h"
 
 /**
  * @brief Function for application main entry.
@@ -31,10 +35,22 @@ int main(void)
     NRF_LOG("============================================\n");
 
     /* really lmic_init */
+    NRF_LOG("OS Init\n");
     os_init();
 
-    lora_job_init();
+    NRF_LOG("Powerup init\n");
+    powerup_init();
+    nrf_delay_ms(1000);
 
+    BNO055_Init();
+ 
+    NRF_LOG("GPS init\n");
+    gps_job_init();
+
+    lora_job_init();
+ 
+    // TraceEulerAngle(); // Uncomment this in order to log Euler angle
+ 
     os_runloop();
 
     NRF_LOG("Oh dear. os_runloop() shouldn't return!\n");
