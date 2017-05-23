@@ -5,7 +5,6 @@
 #include <nrf_drv_twi.h>
 
 // Address is actually 0xE0 but only the 7 LSB counts. (bangs head into desk)
-//E0 E2 E4 E6 E8 EA EC
 #define TPS22994_I2C_ADDRESS        (0xE0>>1)
 #define TPS22994_REG_CONTROL        0x05
 

@@ -151,7 +151,7 @@ void BNO055_ReadEulerAngles(double * heading, double * roll, double * pitch)
 
 
 // Call this test function in order to verify behaviour of BNO055. The function will
-// dump the Euler angle to the debug log.
+// dump the Euler angle to the debug log. This function does not terminate.
 void TraceEulerAngle()
 {
     static char buffer[200];

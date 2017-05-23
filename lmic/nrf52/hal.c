@@ -215,7 +215,6 @@ static void gpio_config(void) {
     APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_NSS_PIN, &outconfig));
     APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_RXTX_PIN, &outconfig));
     APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_RST_PIN, &outconfig));
-    APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_RST_PIN, &outconfig));
     #ifdef EE02
     APP_ERROR_CHECK(nrf_drv_gpiote_out_init(SX1276_ANT_HF_CTRL, &outconfig));
     #endif
