@@ -7,7 +7,7 @@
 # Tool chain settings
 #
 GNU_INSTALL_ROOT := /usr/local
-GNU_VERSION      := 4.9.3
+GNU_VERSION      := 5.4.1 
 GNU_PREFIX       := arm-none-eabi
 
 # =============================================================================
@@ -58,6 +58,8 @@ INC_PATHS += -I ./battery/
 INC_PATHS += -I ./cache/
 INC_PATHS += -I ./jobs/
 INC_PATHS += -I ./tps22994/
+INC_PATHS += -I ./bno055/
+
 
 INC_PATHS += -I $(NRF52_SDK_ROOT)/components/toolchain/CMSIS/Include/
 INC_PATHS += -I $(NRF52_SDK_ROOT)/components/toolchain/gcc/
@@ -151,8 +153,8 @@ ee0x:
 	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c jobs/*.c
 	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c battery/*.c
 	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c gps/*.c
-	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lsm9ds1/*.c
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) tps22994/*.c
+	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) bno055/*.c
 
 lmiclib:
 	$(NO_ECHO)$(CC) -c $(CFLAGS) $(INC_PATHS) lmic/lmic/*.c

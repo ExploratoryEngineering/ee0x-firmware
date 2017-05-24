@@ -18,9 +18,9 @@
 #define NRF52_PINS_H
 
 // Use this #define if you are using the nRF52 DK
-#define NRF52_DK
+// #define NRF52_DK
 // Use this #define if you are using EE-02 with a programming cable or EE-04
-//#define EE02
+#define EE02
 
 #ifdef EE02
     // Set this flag to 1 to enable external antenna
@@ -29,7 +29,7 @@
     // sx1276 pins
     #define SX1276_DIO0_PIN 13
     #define SX1276_DIO1_PIN 14
-    #define SX1276_DIO2_PIN 15
+    #define SX1276_DIO2_PIN 15       
     #define SX1276_DIO3_PIN 16
     #define SX1276_DIO4_A_PIN 19
     #define SX1276_DIO4_B_PIN 20
@@ -41,14 +41,12 @@
     #define SX1276_ANT_HF_CTRL 27
 
     // GPS UART pins
-    #define GPS_RX_PIN 29
-    #define GPS_TX_PIN 28
+    #define GPS_RX_PIN 11
+    #define GPS_TX_PIN 29
     #define GPS_CTS_PIN -1
     #define GPS_RTS_PIN -1
 
-    // Pins for IMU
-    #define IMU_CS_M_PIN 6
-    #define IMU_CS_AG_PIN 5
+    #define BNO055_BL_IND 17
 
 #endif
 // Configuration for nRF52 DK with sheild and breakout boards.
@@ -68,34 +66,30 @@
     #define SX1276_RXTX_PIN 30
 
     // RX/TX pins for the GPS UART
-    #define GPS_RX_PIN 17
-    #define GPS_TX_PIN 18
+    #define GPS_RX_PIN 29
+    #define GPS_TX_PIN 11
     #define GPS_CTS_PIN -1
     #define GPS_RTS_PIN -1
-
-    // SPI pins for the IMU
-    #define IMU_MISO_PIN 18
-    #define IMU_MOSI_PIN 17
-    #define IMU_SCK_PIN 16
-    #define IMU_CS_M_PIN 19
-    #define IMU_CS_AG_PIN 20
-
 #endif
 
 // Common pin assignments
 
-// Channel 1: GPS main power
-// Channel 2: GPS VBackup (always on)
-// Channel 3: Accelerometer/gyro
-// Channel 4: Accelerometer/gyro IO (turn on )
-#define TPS22994_GPS_PIN 1
-#define TPS22994_VBACKUP_PIN 2
-#define TPS22994_MEMS_PIN 3
-#define TPS22994_MEMS_IO_PIN 4
+// Channel 0: GPS main power
+// Channel 1: GPS VBackup (always on)
+// Channel 2: Accelerometer/gyro
+// Channel 3: Accelerometer/gyro IO (turn on )
+#define TPS22994_GPS_PIN 0
+#define TPS22994_VBACKUP_PIN 1
+#define TPS22994_BNO055_PIN 2
+#define TPS22994_BNO055_IO_PIN 3
 
-//I2C
-#define PLAT_I2C_SDA 26
-#define PLAT_I2C_SCL 27
+// Old EE02 I2C
+//#define PLAT_I2C_SDA 26
+//#define PLAT_I2C_SCL 27
+
+#define PLAT_I2C_SDA 7
+#define PLAT_I2C_SCL 8
+
 
 //SPI (CS/NSS is set individually)
 #define PLAT_SPI_MISO 24

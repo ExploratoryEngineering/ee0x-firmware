@@ -8,7 +8,7 @@
 #define TPS22994_I2C_ADDRESS        (0xE0>>1)
 #define TPS22994_REG_CONTROL        0x05
 
-void tps22994_init(nrf_drv_twi_t* twidriver);
+void tps22994_init(uint8_t address, nrf_drv_twi_t* twidriver);
 void tps22994_channel_off(uint8_t address, uint8_t channel);
 void tps22994_channel_on(uint8_t address, uint8_t channel);
 void tps22994_channel_toggle(uint8_t address, uint8_t channel);
