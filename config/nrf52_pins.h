@@ -19,17 +19,18 @@
 
 // Use this #define if you are using the nRF52 DK
 // #define NRF52_DK
+
 // Use this #define if you are using EE-02 with a programming cable or EE-04
 #define EE02
 
 #ifdef EE02
     // Set this flag to 1 to enable external antenna
-    #define EE02_EXT_ANT 0
+    #define EE02_EXT_ANT 1
 
     // sx1276 pins
     #define SX1276_DIO0_PIN 13
     #define SX1276_DIO1_PIN 14
-    #define SX1276_DIO2_PIN 15       
+    #define SX1276_DIO2_PIN 15
     #define SX1276_DIO3_PIN 16
     #define SX1276_DIO4_A_PIN 19
     #define SX1276_DIO4_B_PIN 20

@@ -62,19 +62,20 @@ enum { DR_PAGE = DR_PAGE_EU868 };
 
 // Default frequency plan for EU 868MHz ISM band
 // Bands:
-//  g1 :   1%  14dBm  
-//  g2 : 0.1%  14dBm  
-//  g3 :  10%  27dBm  
+//  g1 :   1%  14dBm
+//  g2 : 0.1%  14dBm
+//  g3 :  10%  27dBm
 //                 freq             band     datarates
-enum { EU868_F1 = 868100000,      // g1   SF7-12 
-       EU868_F2 = 868300000,      // g1   SF7-12 FSK SF7/250         
-       EU868_F3 = 868500000,      // g1   SF7-12         
-       EU868_F4 = 868850000,      // g2   SF7-12         
-       EU868_F5 = 869050000,      // g2   SF7-12         
-       EU868_F6 = 869525000,      // g3   SF7-12         
-       EU868_J4 = 864100000,      // g2   SF7-12  used during join
-       EU868_J5 = 864300000,      // g2   SF7-12   ditto
-       EU868_J6 = 864500000,      // g2   SF7-12   ditto
+enum { EU868_F1 = 868100000,      // g1   SF7-12                Default freq
+       EU868_F2 = 868300000,      // g1   SF7-12 FSK SF7/250    Default freq
+       EU868_F3 = 868500000,      // g1   SF7-12                Default freq
+       EU868_F6 = 869525000,      // g3   SF7-12
+       EU868_J1 = 867100000,      // g1   SF7-12                Default freq
+       EU868_J2 = 867300000,      // g1   SF7-12 FSK SF7/250    Default freq
+       EU868_J3 = 867500000,      // g1   SF7-12                Default freq
+       EU868_J4 = 867700000,      // g1   SF7-12                Default freq
+       EU868_J5 = 867700000,      // g1   SF7-12                Default freq
+
 };
 enum { EU868_FREQ_MIN = 863000000,
        EU868_FREQ_MAX = 870000000 };
@@ -92,7 +93,7 @@ enum { AIRTIME_BCN       = 144384 };  // micros
 
 enum {
     // Beacon frame format EU SF9
-    OFF_BCN_NETID    = 0,         
+    OFF_BCN_NETID    = 0,
     OFF_BCN_TIME     = 3,
     OFF_BCN_CRC1     = 7,
     OFF_BCN_INFO     = 8,
@@ -133,7 +134,7 @@ enum { AIRTIME_BCN       = 72192 };  // micros
 
 enum {
     // Beacon frame format US SF10
-    OFF_BCN_NETID    = 0,         
+    OFF_BCN_NETID    = 0,
     OFF_BCN_TIME     = 3,
     OFF_BCN_CRC1     = 7,
     OFF_BCN_INFO     = 9,
@@ -354,7 +355,7 @@ inline rps_t makeRps (sf_t sf, bw_t bw, cr_t cr, int ih, int nocrc) {
     return sf | (bw<<3) | (cr<<5) | (nocrc?(1<<7):0) | ((ih&0xFF)<<8);
 }
 #define MAKERPS(sf,bw,cr,ih,nocrc) ((rps_t)((sf) | ((bw)<<3) | ((cr)<<5) | ((nocrc)?(1<<7):0) | ((ih&0xFF)<<8)))
-// Two frames with params r1/r2 would interfere on air: same SFx + BWx 
+// Two frames with params r1/r2 would interfere on air: same SFx + BWx
 inline int sameSfBw(rps_t r1, rps_t r2) { return ((r1^r2)&0x1F) == 0; }
 
 extern const u1_t _DR2RPS_CRC[];
