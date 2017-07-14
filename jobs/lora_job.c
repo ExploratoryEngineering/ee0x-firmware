@@ -21,6 +21,12 @@
 
 #define PORTNO 1
 
+#if !LORAWAN_OTAA
+static u1_t NWSKEY[16] =  LORAWAN_NWKSKEY;
+static u1_t APPSKEY[16] = LORAWAN_APPSKEY;
+#endif
+
+
 static osjob_t sendjob;
 static osjob_t initjob;
 

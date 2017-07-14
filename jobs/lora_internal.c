@@ -21,11 +21,6 @@ configuration values that the device will use. */
 #include "lora_config.h"
 
 
-#if !LORAWAN_OTAA
-static u1_t NWSKEY[16] =  LORAWAN_NWKSKEY;
-static u1_t APPSKEY[16] = LORAWAN_APPSKEY;
-#endif
-
 // application router ID (LSBF)
 static const u1_t APPEUI[8]  = LORAWAN_APP_EUI;
 
